@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Background Changer</title>
+    <style>
+      body{
+        background-color:black;
+        margin:0;
+        border:0;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      .main-block{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-family: monospace;
+        border: solid;
+        border-radius: 10px;
+        border-color: white;
+      }
+
+      .button{
+        padding: 10px 20px;
+        margin:5px;
+        cursor: pointer;
+        border-radius: 20px;
+        border-color:#00ff9c ;
+        transition-duration: 0.2s;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 16px;
+        font-weight: bolder;
+        color: black;
+      }
+
+      .button:hover{
+        padding: 10px 22px;
+        transition-duration: 0.1s;
+      }
+
+      .button:active{
+        padding: 8px 20px;
+
+      }
+
+      #Red{
+        background-color: red;
+      }
+      
+      #Yellow{
+        background-color: yellow;
+      }
+
+      #Green{
+        background-color: green;
+      }
+
+      #Purple{
+        background-color: purple;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-block">
+      <h1>Welcome to Background Color Changer !!!</h1>
+      <div class="button-adjust">
+        <button class="button" id="Red" onclick="onChange('red')">Red</button>
+        <button class="button" id="Yellow" onclick="onChange('yellow')">Yellow</button>
+        <button class="button" id="Green" onclick="onChange('green')">Green</button>
+        <button class="button" id="Purple" onclick="onChange('purple')">Purple</button>
+      </div>
+      <h3>Click on button to change the background color !!</h3>
+    </div>
+
+    <script>
+      const btn = document.querySelectorAll(".button");
+      const body = document.querySelector("body");
+
+      function onChange(color){
+        body.style.backgroundColor = `${color}`
+      }
+      onChange();
+    </script>
+  </body>
+</html>
