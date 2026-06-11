@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Body Mass Index</title>
+
+    <style>
+      body{
+        background-color:#121212;
+        margin:0;
+        color:white;
+      }
+
+      .main-block{
+        display:flex;
+        flex-direction:column;
+        align-items: center;
+      }
+
+      h1,h3{
+        font-family: 'Courier New', Courier, monospace;
+      }
+
+      .height-box,.weight-box{
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
+      }
+
+      .height,.weight{
+        padding: 10px 20px 10px 8px;
+        margin-left:20px;
+        border:none;
+        border-radius: 20px;
+        font-weight: bold;
+        background-color: blanchedalmond;
+      }
+
+      .result{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content: center;
+      }
+
+      .calculate{
+        padding:10px;
+        margin-top:10px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 13px;
+        font-weight: bold;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition:0.1s;
+      }
+
+      .calculate:hover{
+        padding:12px;
+        transition: 0.199s;
+      }
+
+      .calculate:active{
+        padding: 13px ;
+        transition: 0.2s;
+      }
+
+      .discription{
+        font-family: 'Courier New', Courier, monospace;
+        font-style: italic;
+      }
+
+      table{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;        
+      }
+      td{
+        border:solid;
+        border-width: 1px;
+        padding: 16px;
+        font-family: 'Courier New', Courier, monospace;
+      }
+      th{
+        border: solid;
+        padding: 16px;
+        font-family: 'Courier New', Courier, monospace;
+      }
+
+      caption{
+        margin:10px;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="main-block">
+      <h1>BODY MASS INDEX CALCULATOR</h1>
+      <div class="height-box">
+        <h3>Height : </h3>
+        <input class="height" type="number" placeholder="Enter your height in meters" required>
+      </div>
+      <div class="weight-box">
+        <h3>Weight : </h3>
+        <input class="weight" type="number" placeholder="Enter your weight in kg" required>
+      </div>
+      <div class="result">
+        <button class="calculate">CALCULATE</button>
+        <h3></h3>
+      </div>
+      <div class="about">
+        <p class="discription">Body Mass Index (BMI) evaluates weight relative to height. BMI does not measure body fat directly and is not a perfect diagnostic tool.</p>
+        <p class="discription">For adults, a BMI below 18.5 is underweight, 18.5–24.9 is healthy weight, 25.0–29.9 is overweight, and 30.0+ is obese.</p>
+
+        <table>
+          <caption>Adult BMI Chart Ranges</caption>
+          <tr>
+            <th>BMI</th>
+            <th>Category</th>
+          </tr>
+          <tr>
+            <td>Below 18.5</td>
+            <td>Underweight</td>
+          </tr>
+          <tr>
+            <td>18.5 – 24.9</td>
+            <td>Normal / Healthy Weight</td>
+          </tr>
+          <tr>
+            <td>25.0 – 29.9</td>
+            <td>Overweight</td>
+          </tr>
+          <tr>
+            <td>30.0 – 34.9</td>
+            <td>Moderately Obese</td>
+          </tr>
+          <tr>
+            <td>35.0 – 39.9</td>
+            <td>Severely Obese</td>
+          </tr>
+          <tr>
+            <td>40.0 and above</td>
+            <td>Morbidly / Extremely Obese</td>
+          </tr>
+          
+        </table>
+
+      </div>
+    </div>
+
+    <script>
+      
+      const result = document.querySelector('.result');
+      function calculateBmi(){
+        result.addEventListener("click" , () => {
+          const h = parseInt(document.querySelector(".height").value);
+          const w = parseInt(document.querySelector(".weight").value);
+
+          if(h<0){
+            result.lastElementChild.innerHTML = "Enter a valid height"
+          }
+          else if(w<0){
+            result.lastElementChild.innerHTML = "Enter a valid weight"
+          }
+          else if(h<0 && w<0){
+            result.lastElementChild.innerHTML = "Enter a valid height and weight"
+          }
+          else{
+            let bmi = w/(h ** 2);
+            result.lastElementChild.innerHTML= `The calculated BMI is : ${bmi}`;
+          }
+        })
+      };
+      calculateBmi();
+      
+      
+    </script>
+  </body>
+</html>
