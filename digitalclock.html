@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <title>Digital Clock</title>
+
+  <style>
+    body{
+      background-color: #121212;
+      color: white;
+      margin:0;
+      padding:0;
+    }
+
+    .main-block{
+      display:flex;
+      flex-direction:column;
+      align-items: center;
+      margin: 30px;
+    }
+
+    .heading{
+      font-family: 'Courier New', Courier, monospace;
+      font-size: larger;
+      font-weight: bold;
+    }
+
+    .time{
+      border:none;
+      background-color:orange;
+      margin: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size:40px;
+      font-weight: bold;
+      color:white;
+    }
+  </style>
+
+</html>
+<body>
+  <div class="main-block">
+    <div class="heading">Your Local Time</time></div>
+    <div class="time"></div>
+  </div>
+
+  <script>
+    const t = document.querySelector('.time');
+    setInterval(() => {
+      const d = new Date;
+      t.innerHTML = d.toLocaleTimeString();
+    },1000)
+
+  </script>
+  
+</body>
