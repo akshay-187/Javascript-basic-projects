@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <title>Number Guessing Game</title>
+
+  <style>
+    body{
+      margin:0;
+      padding:0;
+      background-color:#121212;
+      color:white;
+    }
+
+    .main-block{
+      display:flex;
+      flex-direction:column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1{
+      font-family:monospace;
+      font-weight: bold;
+      font-size: 29px;
+    }
+
+    p{
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      text-align: center;
+    }
+    
+    label{
+      font-family:cursive;
+      font-size: 30px;
+    }
+
+    .guess{
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-weight: bold;
+      padding: 8px 10px;
+      margin-top: 20px;
+    }
+
+    .submit{
+      margin-top:20px;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+      padding: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 20px;
+      background-color: orange;
+    }
+
+    .submit:hover{
+      padding:10px 12px;
+    }
+
+    .submit:active{
+      padding:10px;
+    }
+
+    .previous-guess, .remaining-guess , .result, .hilo{
+      font-family: 'Courier New', Courier, monospace;
+      color: white;
+    }
+
+  </style>
+
+</html>
+<body>
+  <div class="main-block">
+    <h1>NUMBER GUESSING GAME</h1>
+    <p>
+      Try and guess a random number between 1 and 100.<br><br>
+      You have 10 attempts to guess the right number. 
+    </p>
+    <label>Guess a number !!!</label>
+    <input class="guess" type="number" placeholder="Type your number here" required>
+    <button class="submit">Submit guess</button>
+    <h3 class="previous-guess">Previous Guess:</h3>
+    <h3 class="remaining-guess">Guess remaining: 10</h3>
+    <h3 class="result"></h3>
+    <p class="hilo"></p>
+  </div>
+
+  <Script>
+
+    
+    const submit= document.querySelector(".submit"); 
+    const result = document.querySelector(".result");
+    const prevGuess= document.querySelector(".previous-guess");
+    const remGuess= document.querySelector(".remaining-guess");
+    const hilo= document.querySelector(".hilo"); 
+    const computerMove = Math.floor(Math.random()*100);
+    let arr = [];
+    console.log(computerMove);
+
+
+    submit.addEventListener('click',() => {
+      const playerMove= parseInt(document.querySelector('.guess').value);
+      
+      function numberSelection(){
+        if(playerMove > 100){
+          result.innerText = `Please select a number between 1 to 100.You entered ${playerMove} which is larger than 100`;
+          console.log(playerMove)
+        }
+        else if(isNaN(playerMove)){
+          result.innerText = "Please select a number between 1 to 100";
+        }
+        else if(playerMove < 1){
+          result.innerText = `Please select a number between 1 to 100. You entered ${playerMove} which is smaller than 1`;
+        }
+        else{
+          decision();
+        }
+      }
+      numberSelection();
+
+      function decision(){
+        if(playerMove === computerMove){
+          result.innerText = `Your Guess ${playerMove} was right :) Congratulation !!!`;
+          submit.disabled = true;
+          playerMove.disabled = true;
+        }
+        else{ 
+          if(playerMove > computerMove){
+            hilo.innerHTML = `YOUR GUESS IS HIGH`;
+          }
+          else if (playerMove < computerMove){
+            hilo.innerHTML = `YOUR GUESS IS LOW`;
+          }
+          else{
+            result.innerText = `Your Guess ${playerMove} was wrong :( Try Again?`;
+          }
+        }
+        prevMove(playerMove);  
+      }
+      
+      function prevMove(playerMove){
+
+        arr.push(playerMove);
+        prevGuess.innerHTML += `${arr[arr.length - 1]} `
+        console.log(arr);
+        remainMove(arr);
+      }
+
+      function remainMove(arr){
+        if(arr.length >= 10){
+          result.innerText = `The number was ${computerMove}. Better Luck Next Time`;
+          submit.disabled = true;
+          playerMove.disabled= true;
+        }else{
+          remGuess.innerHTML = `Guess remaining : ${10 - arr.length}`;
+        }
+      }
+    })
+  </Script>
+</body>
