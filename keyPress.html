@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <title>What u do ?</title>
+  <style>
+    body{
+      background-color: black;
+      color:white;
+      margin:0;
+      padding: 0;
+    }
+
+    h1,p{
+      font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    .main-heading{
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100vh;
+    }
+  </style>
+</html>
+<body>
+  <div class="main-heading">
+    <h1>What you do ? </h1>
+    <p>We are here to tell you what action you performed, when you touch any button !!!</p>
+    <div class="center">
+      <h3 class="key">Press anykey to continue </h3>
+    </div>
+  </div>
+
+  <script>
+    const press = document.querySelector(".key");
+
+    document.addEventListener("keydown" , (e) => {
+
+      if(e.key === " "){
+        press.innerHTML = `You pressed space`;
+      }
+      else{
+        press.innerHTML = `You pressed ${e.key}`
+      }
+    })
+
+  </script>
+  
+</body>
